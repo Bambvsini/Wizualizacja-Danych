@@ -1,0 +1,16 @@
+a=4
+b=7
+c="tekst1"
+d="tekstdrugi"
+e=3.7
+f=2.34
+g=41+3j
+h=7+1j
+print(a)
+print(b)
+print(c)
+print(d)
+print(e)
+print(f)
+print(g)
+print(h)
