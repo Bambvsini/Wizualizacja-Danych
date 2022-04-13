@@ -68,23 +68,23 @@ print(mat_diag_k)
 z = np.fromiter(range(5), dtype='int32')
 print(z)
 
-marcin = b'Marcin'
-#mar = np.frombuffer(marcin, dtype='S1')
-#print(mar)
-#mar_2 = np.frombuffer(marcin, dtype='S2')
-#print(mar_2)
+test = b'Test'
+#Tes = np.frombuffer(Test, dtype='S1')
+#print(Tes)
+#Tes_2 = np.frombuffer(Test, dtype='S2')
+#print(Tes_2)
 
-marcin = 'Marcin'
-mar_3 = np.array(list(marcin))
-mar_4 = np.array(list(marcin), dtype='S1')
-mar_5 = np.array(list(b'Marcin'))
-mar_6 = np.fromiter(marcin, dtype='S1')
-mar_7 = np.fromiter(marcin, dtype='U1')
-print(mar_3)
-print(mar_4)
-print(mar_5)
-print(mar_6)
-print(mar_7)
+test = 'Test'
+tes_3 = np.array(list(test))
+tes_4 = np.array(list(test), dtype='S1')
+tes_5 = np.array(list(b'Test'))
+tes_6 = np.fromiter(test, dtype='S1')
+tes_7 = np.fromiter(test, dtype='U1')
+print(tes_3)
+print(tes_4)
+print(tes_5)
+print(tes_6)
+print(tes_7)
 
 
 mat = np.ones((2,2))
