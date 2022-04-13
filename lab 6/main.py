@@ -1,128 +1,125 @@
 import numpy as np
+#
+# # zadanie 1
+# a=np.arange(4,84,4)
+# print(a)
+#
+# # zadanie 2
+# b=np.arange(1.0,10.0,1.0)
+# print(b)
+# c=b.astype('int32')
+# print(c)
+#
+# # zadanie 3
+# def funkcja(n):
+#     e=[]
+#     for i in range(1,n*n+1):
+#         e.append(2**i)
+#     d=np.array([e])
+#     d=d.reshape((n,n))
+#     return d
+#
+# print(funkcja(3))
+#
+# # zadanie 4
 
-a = np.array([0, 1])
-print(a)
+def funkcja(n,m):
+    return np.logspace(1,m,m,base=n,dtype=float)
 
-a = np.arange(2)
-print(a)
+print(funkcja(2,4))
 
-print(type(a))
+# # zadanie 5
+# def mac_diag(n):
+#     return np.diag([a for a in range(n,0,-1)], +2)
+#
+# print(mac_diag(5))
 
-print(a.dtype)
+# zadanie 6
 
-a = np.arange(2, dtype='int64')
-print(a.dtype)
-
-b = a.astype('float')
-print(b)
-print(b.dtype)
-
-print(b.shape)
-
-print(a.ndim)
-
-m = np.array([np.arange(2), np.arange(2)])
-print(m.shape)
-
-print(type(m))
+slowo1="marek"
+slowo2="marek"
+slowo3="mirek"
+a=len(slowo1)
+b=len(slowo2)
+c=len(slowo3)
 
 
-zera = np.zeros((5,5))
-jedynki = np.ones((4,4))
-print(zera)
-print(jedynki)
+pusta=np.empty((a,b),dtype='str')
+for i in range(0,a):
+    pusta[0,i]=slowo1[i]
+    pusta[i,0]=slowo2[i]
+    pusta[i,i]=slowo3[i]
 
-print(zera.dtype)
-print(jedynki.dtype)
-
-pusta = np.empty((2,2))
 print(pusta)
 
-poz_1=pusta[1,1]
-poz_2=pusta[0,1]
-print(poz_1)
-print(poz_2)
 
-macierz = np.array([[1,2], [3,4]])
+# zadanie 7
+
+def generuj(n):
+    zera=np.zeros((n,n))
+    for i in range(0,n):
+        for j in range(0,n):
+            if(j>i):
+                zera[i,j]=abs(2*(j-i+1))
+            else:
+                zera[i,j]=abs(2*(i-j+1))
+
+    return zera
+
+print(generuj(3))
+
+
+# zadanie 8
+def podzial(tablica,kierunek):
+    if(kierunek=="poziomo" or kierunek=="pionowo"):
+        if(tablica.shape[0]%2==1 and kierunek=="poziomo"):
+            return "nie możesz tego zrobić, bo wysokość tablicy jest liczbą nieparzystą"
+        if(tablica.shape[1]%2==1 and kierunek=="pionowo"):
+             return "nie możesz tego zrobić, bo szerokość tablicy jest liczbą nieparzystą"
+        else:
+            if(kierunek=="poziomo" and tablica.shape[0]%2==0):
+                tab1=np.zeros((tablica.shape[0]//2,tablica.shape[1]))
+                tab2 = np.zeros((tablica.shape[0]//2, tablica.shape[1]))
+                for i in range(0,tab1.shape[0]):
+                    for j in range(0,tab1.shape[1]):
+                        tab1[i,j]=tablica[i,j]
+                for i in range(tab2.shape[0],tablica.shape[0]):
+                    for j in range(tab2.shape[0], tablica.shape[0]):
+                        tab2[i-tab2.shape[0], j-tab2.shape[0]] = tablica[i, j]
+                return tab1,tab2
+            if (kierunek == "pionowo" and tablica.shape[1] % 2 == 0):
+                tab1 = np.zeros((tablica.shape[0], tablica.shape[1]//2))
+                tab2 = np.zeros((tablica.shape[0], tablica.shape[1]//2))
+                for i in range(0, tab1.shape[0]):
+                    for j in range(0, tab1.shape[1]):
+                        tab1[i, j] = tablica[i, j]
+                for i in range(tab2.shape[0], tablica.shape[0]):
+                    for j in range(tab2.shape[0], tablica.shape[0]):
+                        tab2[i - tab2.shape[0], j - tab2.shape[0]] = tablica[i, j]
+                return tab1, tab2
+
+
+    else:
+        return "nastepnym razem wpisz jako kierunek 'pionowo' lub 'poziomo'"
+
+
+# zadanie 9
+r=input("podaj róznicę(int)")
+a1=input("podaj 1 wyraz ciągu(int)")
+r=int(r)
+a1=int(a1)
+
+list=[a1+r*i for i in range(0,25)]
+
+
+macierz=np.zeros((5,5))
+licznik=0
+for i in range(0,5):
+    for j in range(0,5):
+        macierz[i,j]=list[licznik]
+        licznik+=1
+
 print(macierz)
 
-liczby = np.arange(1, 2, 0.1)
-print(liczby)
-
-liczby_lin = np.linspace(1, 2, 5)
-print(liczby_lin)
-
-z = np.indices((5,3))
-print(z)
-
-x, y = np.mgrid[0:5, 0:5]
-print(x)
-print(y)
-
-mat_diag = np.diag([a for a in range(5)])
-print(mat_diag)
-
-mat_diag_k = np.diag([a for a in range(5)], -1)
-print(mat_diag_k)
-
-z = np.fromiter(range(5), dtype='int32')
-print(z)
-
-test = b'Test'
-#Tes = np.frombuffer(Test, dtype='S1')
-#print(Tes)
-#Tes_2 = np.frombuffer(Test, dtype='S2')
-#print(Tes_2)
-
-test = 'Test'
-tes_3 = np.array(list(test))
-tes_4 = np.array(list(test), dtype='S1')
-tes_5 = np.array(list(b'Test'))
-tes_6 = np.fromiter(test, dtype='S1')
-tes_7 = np.fromiter(test, dtype='U1')
-print(tes_3)
-print(tes_4)
-print(tes_5)
-print(tes_6)
-print(tes_7)
 
 
-mat = np.ones((2,2))
-mat_1 = np.ones((2,2))
-mat = mat + mat_1
-print(mat)
-print(mat - mat_1)
-print(mat*mat_1)
-print(mat/mat_1)
-
-a = np.arange(10)
-print(a)
-s = slice(2, 7, 2)
-print(a[s])
-s = range(2, 7, 2)
-print(a[s])
-
-
-print(a[2:7:2])
-
-print(a[1:])
-print(a[2:5])
-
-mat = np.arange(25)
-
-mat = mat.reshape((5,5))
-print(mat)
-print(mat[1:])
-print(mat[:,1])
-print(mat[:, -1:])
-print(mat[2:6, 1:3]
-print(mat[:, range(2, 6, 2)])
-print('')
-
- 
-x = np.array([[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11]])
-print(x)
-rows = np.array([[0, 0], [3, 3]])
-cols = np.array([[0, 2], [0, 2]])
-y = x[rows, cols]
-print(y)
